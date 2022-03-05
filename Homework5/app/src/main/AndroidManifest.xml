@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.miu.Assignment5">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Homework5">
+        <activity
+            android:name="com.miu.Assignment5.ProductDetail"
+            android:exported="true" />
+        <activity
+            android:name="com.miu.Assignment5.RecyclerView"
+            android:exported="true" />
+        <activity
+            android:name="com.miu.Assignment5.Quiz"
+            android:exported="true" />
+        <activity
+            android:name="com.miu.Assignment5.ShoppingDetail"
+            android:exported="true" />
+        <activity
+            android:name="com.miu.Assignment5.Shopping"
+            android:exported="true" />
+        <activity
+            android:name="com.miu.Assignment5.MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
