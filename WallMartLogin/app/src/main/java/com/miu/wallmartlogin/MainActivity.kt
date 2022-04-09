@@ -21,4 +21,4 @@ class MainActivity : AppCompatActivity() {
         val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse("https://www.walmart.com/account/login"))
         startActivity(browserIntent);
     }
-}
+}b
