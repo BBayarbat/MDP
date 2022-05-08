@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.View
 import com.demo.android.bayarbat.R
 import kotlinx.android.synthetic.main.activity_result.*
+import kotlinx.android.synthetic.main.activity_result_details.*
 
 class ResultDetailActivity : AppCompatActivity() {
 
@@ -13,8 +14,8 @@ class ResultDetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_result_details)
 
-        //val answers = intent.extras?.getIntArray("ANSWERS")
-        //scoreTextView.text = "Your answers : " + answers
+        val resultDetails = intent.extras?.getString("RESULT_DETAIL")
+        detailTextView.text = resultDetails
     }
 
     fun backToHome(view: View) {

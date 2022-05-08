@@ -37,7 +37,7 @@ class QuestionActivity : AppCompatActivity() {
         when(state){
             is QuizState.EmptyState -> renderEmptyState()
             is QuizState.DataState -> renderDataState(state)
-            is QuizState.FinishState -> goToResultActivity(state.numberOfQuestions, state.score, state.skipped)
+            is QuizState.FinishState -> goToResultActivity(state.numberOfQuestions, state.score, state.skipped, state.resultDetail)
             is QuizState.LoadingState -> renderLoadingState()
         }
     }
@@ -84,14 +84,15 @@ class QuestionActivity : AppCompatActivity() {
     }
 
 
-    private fun goToResultActivity(numberOfQuestions: Int, score: Int, skipped: Int) {
+    private fun goToResultActivity(numberOfQuestions: Int, score: Int, skipped: Int, resultDetail: String) {
 
         startActivity(
             intentFor<ResultActivity>(
                 "SCORE" to score,
                 "SKIPPED" to skipped,
                 "NUMBER_OF_QUESTIONS" to numberOfQuestions,
-                "WRONG" to (numberOfQuestions - skipped - score)
+                "WRONG" to (numberOfQuestions - skipped - score),
+                "RESULT_DETAIL" to resultDetail
             ).newTask().clearTask()
         )
     }

@@ -12,6 +12,8 @@ import org.jetbrains.anko.newTask
 
 class ResultActivity : AppCompatActivity() {
 
+    private var resultDetail: String = ""
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_result)
@@ -20,6 +22,8 @@ class ResultActivity : AppCompatActivity() {
         val skipped = intent.extras?.getInt("SKIPPED")
         val numberOfQuestions = intent.extras?.getInt("NUMBER_OF_QUESTIONS")
         val wrong = intent.extras?.getInt("WRONG")
+        resultDetail = intent.extras?.getString("RESULT_DETAIL").toString()
+
         scoreTextView.text =
             "Total Questions : " + numberOfQuestions + "\nSkipped questions: " + skipped + "\nRight answers: " + score + "\nWrong answers: " + wrong
     }
@@ -31,7 +35,7 @@ class ResultActivity : AppCompatActivity() {
     fun resultDetail(view: View) {
         startActivity(
             intentFor<ResultDetailActivity>(
-                "SCORE" to 1
+                "RESULT_DETAIL" to resultDetail
             ).newTask().clearTask()
         )
     }

@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import com.demo.android.bayarbat.data.QuizRepository
 import com.demo.android.bayarbat.data.entity.QuestionAndAllAnswers
 import com.demo.android.bayarbat.data.entity.QuizState
+import java.lang.StringBuilder
 
 class QuizViewModel(repository: QuizRepository): ViewModel() {
 
@@ -16,6 +17,7 @@ class QuizViewModel(repository: QuizRepository): ViewModel() {
     private val allQuestionAndAllAnswers = repository.getQuestionAndAllAnswers()
     private var score: Int = 0
     private var skipped: Int = 0
+    private var resultDetail: StringBuilder = StringBuilder()
 
     init {
         currentState.postValue(QuizState.LoadingState)
@@ -36,7 +38,7 @@ class QuizViewModel(repository: QuizRepository): ViewModel() {
         currentState.addSource(currentQuestion){
                 currentQuestionNumber ->
             if (currentQuestionNumber == allQuestionAndAllAnswers.value?.size){
-                currentState.postValue(QuizState.FinishState(currentQuestionNumber, score, skipped))
+                currentState.postValue(QuizState.FinishState(currentQuestionNumber, score, skipped, resultDetail.toString()))
             }
         }
 
@@ -82,8 +84,17 @@ class QuizViewModel(repository: QuizRepository): ViewModel() {
     private fun verifyAnswer(choice: Int) {
         val currentQuestion = questionAndAnswers.value
 
-        if (currentQuestion != null && currentQuestion.answers[choice].isCorrect){
-            score++
+        if (currentQuestion != null) {
+            if (currentQuestion.answers[choice].isCorrect){
+                score++
+            }
+
+            if(!resultDetail.isEmpty()){
+                resultDetail.append("\n\n")
+            }
+            resultDetail.append(currentQuestion.question?.text ?: "")
+            resultDetail.append("\nYour answer: " + currentQuestion.answers[choice].text)
+            resultDetail.append("\nCorrect answer: " + currentQuestion.answers[choice].text)
         }
     }
 

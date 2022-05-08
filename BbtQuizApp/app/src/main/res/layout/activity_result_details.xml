@@ -30,15 +30,15 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/scoreTextView"
+            android:id="@+id/detailTextView"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="512dp"
             android:layout_marginTop="32dp"
             android:layout_marginBottom="32dp"
-            android:layout_gravity="center"
-            android:hint="@string/hint_score"
-            android:textSize="24sp"
-            android:textStyle="bold" />
+            android:layout_gravity="left"
+            android:scrollbars="vertical"
+            android:hint="@string/result_detail_example"
+            android:textSize="18sp" />
 
         <Button
             android:id="@+id/btn_home"
@@ -47,9 +47,12 @@
             android:background="@drawable/buttons_background"
             android:onClick="backToHome"
             android:textStyle="bold"
+            android:layout_gravity="center"
             android:text="@string/text_home"
             android:textColor="#FFC107"
             android:textSize="22sp" />
+
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
